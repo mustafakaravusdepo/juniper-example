@@ -1,0 +1,24 @@
+set system host-name jn22-k28.mustafakaravus.com
+set system services ssh protocol-version v2
+set system services netconf ssh
+set system services web-management http port 8080
+set chassis alarm management-ethernet link-down ignore
+set interfaces lo0 unit 0 family inet filter input RE_FILTER
+set interfaces lo0 unit 0 family inet address 127.0.0.1/32
+set routing-options static route 0.0.0.0/0 next-hop 10.0.0.217
+set snmp name jn22-k52
+set snmp description jn22-k52.mustafakaravus.com
+set snmp location "TR - Bursa"
+set snmp contact "destek@mustafakaravus.com"
+set snmp engine-id local k52
+set snmp community bilge authorization read-only
+set system ntp server 10.0.0.1
+set firewall family inet filter RE_FILTER term Kabul from source-address 192.168.0.0/24
+set firewall family inet filter RE_FILTER term Kabul from source-address 172.16.16.16/32
+set firewall family inet filter RE_FILTER term Kabul from protocol tcp
+set firewall family inet filter RE_FILTER term Kabul from protocol udp
+set firewall family inet filter RE_FILTER term Kabul then accept
+set firewall family inet filter RE_FILTER term Red from protocol tcp
+set firewall family inet filter RE_FILTER term Red from protocol udp
+set firewall family inet filter RE_FILTER term Red then discard
+set firewall family inet filter RE_FILTER term deafult then accept
